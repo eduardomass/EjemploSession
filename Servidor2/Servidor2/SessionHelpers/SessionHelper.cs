@@ -20,19 +20,21 @@ namespace Servidor2.SessionHelpers
 
             return true;
         }
-        public LoginModel GetUsuario(ISession session)
+        //public LoginModel GetUsuario(ISession session)
+        public string GetUsuario(ISession session)
         {
             var value = session.GetString("usuario");
             if (value == null)
                 return null;
-
-            return JsonConvert.DeserializeObject<LoginModel>(value);
+            return value;
+            //return JsonConvert.DeserializeObject<LoginModel>(value);
         }
         public void SetUsuario(ISession session, string value)
         {
-            LoginModel login = new LoginModel();
-            login.Usuario = value;
-            session.SetString("usuario", JsonConvert.SerializeObject(login));
+            //LoginModel login = new LoginModel();
+            //login.Usuario = value;
+            //session.SetString("usuario", JsonConvert.SerializeObject(login));
+            session.SetString("usuario", value);
         }
 
         public static LoginModel UsuarioCorrecto(string nombre)
